@@ -14,6 +14,8 @@
 
 
 
+static uint16_t leds_virtuales;
+
 static const int LED = 3;
 
 
@@ -26,7 +28,7 @@ void test_todos_los_leds_inician_apagados(void)
 
 
 
-    uint16_t leds_virtuales = 0xFF;
+    leds_virtuales = 0xFF;
 
     leds_init(&leds_virtuales);
 
@@ -34,7 +36,7 @@ void test_todos_los_leds_inician_apagados(void)
 
    ((void *)0)
 
-   ), (UNITY_UINT)(18), UNITY_DISPLAY_STYLE_UINT16);
+   ), (UNITY_UINT)(19), UNITY_DISPLAY_STYLE_UINT16);
 
 }
 
@@ -45,8 +47,6 @@ void test_todos_los_leds_inician_apagados(void)
 void test_prender_un_led(void)
 
 {
-
-    uint16_t leds_virtuales;
 
     leds_init(&leds_virtuales);
 
@@ -76,8 +76,6 @@ void test_apagar_un_led(void)
 
 {
 
-    uint16_t leds_virtuales;
-
     leds_init(&leds_virtuales);
 
     leds_turn_on(LED);
@@ -90,6 +88,6 @@ void test_apagar_un_led(void)
 
    ((void *)0)
 
-   ), (UNITY_UINT)(40), UNITY_DISPLAY_STYLE_UINT16);
+   ), (UNITY_UINT)(39), UNITY_DISPLAY_STYLE_UINT16);
 
 }

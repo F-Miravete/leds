@@ -83,8 +83,8 @@ static void run_test(UnityTestFunction func, const char* name, UNITY_LINE_TYPE l
 int main(void)
 {
   UnityBegin("test_leds.c");
-  run_test(test_todos_los_leds_inician_apagados, "test_todos_los_leds_inician_apagados", 13);
-  run_test(test_prender_un_led, "test_prender_un_led", 22);
+  run_test(test_todos_los_leds_inician_apagados, "test_todos_los_leds_inician_apagados", 14);
+  run_test(test_prender_un_led, "test_prender_un_led", 23);
   run_test(test_apagar_un_led, "test_apagar_un_led", 33);
 
   return UnityEnd();
