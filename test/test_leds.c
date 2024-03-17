@@ -71,7 +71,7 @@ TEST (Listado)
 3 - 
 4 - 
 5 - 
-6 - Apagar todos los leds que esten prendidos
+6 - 
 7 - Prender leds que ya estaban prendidos de antes
 8 - Apagar leds que ya esten apagados
 9 - Comprobar valores prohibidos 
@@ -185,4 +185,18 @@ void test_apagar_todos_los_leds(void)
     TEST_ASSERT_EQUAL_UINT16(0x00, leds_virtuales);
 }
 
+/**
+ * @brief Test 8
+ *        Comprobar los valores limites (Led 1 y Led 16)
+ * 
+ * @param  -
+ * @return -
+ */
+void test_comprobar_limites(void)
+{
+    leds_turn_on(LED16);
+    TEST_ASSERT_BIT_HIGH((LED16 - 1), leds_virtuales);
+    leds_turn_on(LED01);
+    TEST_ASSERT_BIT_HIGH((LED01 - 1), leds_virtuales);
+}
 /* === End of documentation ==================================================================== */
