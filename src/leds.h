@@ -29,6 +29,7 @@ SPDX-License-Identifier: MIT
 /* === Headers files inclusions ================================================================ */
 
 #include <stdint.h>
+#include <stdbool.h>
 
 /* === Cabecera C++ ============================================================================ */
 
@@ -53,7 +54,7 @@ extern "C" {
 void leds_init(uint16_t * port);
 
 /**
- * @brief Función para encender un led (I/O)
+ * @brief Función para encender un led
  *
  * @param led Numero de led a encender (1 a 16)
  * @return -
@@ -61,13 +62,20 @@ void leds_init(uint16_t * port);
 void leds_turn_on(int led);
 
 /**
- * @brief Función para leer la funcion del pin (I/O)
+ * @brief Función para apagar un led
  *
  * @param led Numero de led para apagar (1 a 16)
  * @return -
  */
 void leds_turn_off(int led);
 
+/**
+ * @brief Función para leer el estado de un led
+ *
+ * @param led Numero de led para leer estado (1 a 16)
+ * @return -
+ */
+bool leds_get_status(int led);
 
 /* === End of documentation ==================================================================== */
 

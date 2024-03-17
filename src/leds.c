@@ -70,4 +70,11 @@ void leds_turn_off(int led)
     *puntero &= ~led_to_mask(led);
 }
 
+bool leds_get_status(int led)
+{
+    if(*puntero & led_to_mask(led))
+        return true;
+    else return false;
+}
+
 /* === End of documentation ==================================================================== */
