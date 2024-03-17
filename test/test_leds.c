@@ -69,8 +69,8 @@ TEST (Listado)
 1 - 
 2 - 
 3 - 
-4 - Con todos los leds apagados prender un led y verificar que al consultar el estado del mismo me informa que esta prendido
-5 - Prender todos los leds que estan apagados
+4 - 
+5 - 
 6 - Apagar todos los leds que esten prendidos
 7 - Prender leds que ya estaban prendidos de antes
 8 - Apagar leds que ya esten apagados
@@ -156,6 +156,33 @@ void test_leer_estado_de_leds(void)
     TEST_ASSERT_TRUE(leds_get_status(LED06));
 }
 
+/**
+ * @brief Test 6
+ *        Prender todos los leds que estan apagados y verificar que estan los 16 encendidos
+ * 
+ * @param  -
+ * @return -
+ */
+void test_prender_todos_los_leds(void)
+{
+    leds_turn_on_all();
+    TEST_ASSERT_EQUAL_UINT16(0xFF, leds_virtuales);
+}
 
+/**
+ * @brief Test 7
+ *        Apagar todos los leds que estan encendidos y verificar que estan los 16 apagados
+ * 
+ * @param  -
+ * @return -
+ */
+void test_apagar_todos_los_leds(void)
+{
+    // Enciende todos los leds
+    leds_turn_on_all();
+    // Apaga todos los leds
+    leds_turn_off_all();
+    TEST_ASSERT_EQUAL_UINT16(0x00, leds_virtuales);
+}
 
 /* === End of documentation ==================================================================== */

@@ -73,9 +73,25 @@ void leds_turn_off(int led);
  * @brief Función para leer el estado de un led
  *
  * @param led Numero de led para leer estado (1 a 16)
- * @return -
+ * @return Estado del led (BOOL).
  */
 bool leds_get_status(int led);
+
+/**
+ * @brief Función para encender todos los leds
+ *
+ * @param  -
+ * @return -
+ */
+void leds_turn_on_all(void);
+
+/**
+ * @brief Función para apagar todos los leds
+ *
+ * @param  -
+ * @return -
+ */
+void leds_turn_off_all();
 
 /* === End of documentation ==================================================================== */
 

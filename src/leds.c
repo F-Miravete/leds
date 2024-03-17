@@ -30,8 +30,9 @@ SPDX-License-Identifier: MIT
 /* === Macros definitions ====================================================================== */
 
 #define ALL_LEDS_OFF 0x00
-#define BIT_HIGH 1
-#define LED_OFFSET 1
+#define ALL_LEDS_ON  0xFF
+#define BIT_HIGH     1
+#define LED_OFFSET   1
 
 /* === Private data type declarations ========================================================== */
 
@@ -75,6 +76,16 @@ bool leds_get_status(int led)
     if(*puntero & led_to_mask(led))
         return true;
     else return false;
+}
+
+void leds_turn_on_all()
+{
+    *puntero = ALL_LEDS_ON;
+}
+
+void leds_turn_off_all()
+{
+    *puntero = ALL_LEDS_OFF;
 }
 
 /* === End of documentation ==================================================================== */
