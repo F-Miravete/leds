@@ -46,21 +46,6 @@ static uint16_t leds_virtuales;
 
 /* === Public function implementation ========================================================== */
 
-/*
-
-TEST (Listado)
-1 - 
-2 - 
-3 - 
-4 - 
-5 - 
-6 - 
-7 - Prender leds que ya estaban prendidos de antes
-8 - Apagar leds que ya esten apagados
-9 - Comprobar valores prohibidos 
-10 - 
-
-*/
 
 void setUp(void)
 {
@@ -209,8 +194,8 @@ void test_comprobar_prohibidos_turn_on(void)
  */
 void test_comprobar_prohibidos_turn_off(void)
 {
-    // verifica 2 valore por encima de 16 y 2 valores por debajo de 1
     leds_turn_on_all();
+    // verifica 2 valore por encima de 16 y 2 valores por debajo de 1
     leds_turn_off(LED16 + 1);
     leds_turn_off(LED16 + 17);
     leds_turn_off(LED01 - 1);
@@ -219,4 +204,20 @@ void test_comprobar_prohibidos_turn_off(void)
     TEST_ASSERT_EQUAL_UINT16(ALL_LEDS_ON, leds_virtuales);
 }
 
+/**
+ * @brief Test 11
+ *        Comprobar valores prohibidos (numero de led > 16 o numero de led < 1) para la funcion: leds_get_status()
+ *          
+ * @param  -
+ * @return -
+ */
+void test_comprobar_prohibidos_get_status()
+{
+    leds_turn_on_all();
+    // verifica 2 valore por encima de 16 y 2 valores por debajo de 1
+    TEST_ASSERT_FALSE(leds_get_status(LED16 + 1));
+    TEST_ASSERT_FALSE(leds_get_status(LED16 + 17));
+    TEST_ASSERT_FALSE(leds_get_status(LED01 - 1));
+    TEST_ASSERT_FALSE(leds_get_status(LED01 - 17));
+}
 /* === End of documentation ==================================================================== */
