@@ -29,8 +29,6 @@ SPDX-License-Identifier: MIT
 
 /* === Macros definitions ====================================================================== */
 
-#define ALL_LEDS_OFF 0x00
-#define ALL_LEDS_ON  0xFF
 #define BIT_HIGH     1
 #define LED_OFFSET   1
 
@@ -63,19 +61,25 @@ void leds_init(uint16_t * port)
 
 void leds_turn_on(int led)
 {
-    *puntero |= led_to_mask(led);
+    if((led <= LED16) && (led >= LED01))
+        *puntero |= led_to_mask(led);
 }
 
 void leds_turn_off(int led)
 {
-    *puntero &= ~led_to_mask(led);
+    if((led <= LED16) && (led >= LED01))
+        *puntero &= ~led_to_mask(led);
 }
 
 bool leds_get_status(int led)
 {
-    if(*puntero & led_to_mask(led))
-        return true;
-    else return false;
+    if((led <= LED16) && (led >= LED01))
+    {
+        if(*puntero & led_to_mask(led))
+            return true;
+        else return false;
+    }
+    return false;
 }
 
 void leds_turn_on_all()

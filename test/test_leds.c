@@ -30,23 +30,6 @@ SPDX-License-Identifier: MIT
 
 /* === Macros definitions ====================================================================== */
 
-#define LED01 1
-#define LED02 2
-#define LED03 3
-#define LED04 4
-#define LED05 5
-#define LED06 6
-#define LED07 7
-#define LED08 8
-#define LED09 9
-#define LED10 10
-#define LED11 11
-#define LED12 12
-#define LED13 13
-#define LED14 14
-#define LED15 15
-#define LED16 16
-
 /* === Private data type declarations ========================================================== */
 
 /* === Private variable declarations =========================================================== */
@@ -75,7 +58,7 @@ TEST (Listado)
 7 - Prender leds que ya estaban prendidos de antes
 8 - Apagar leds que ya esten apagados
 9 - Comprobar valores prohibidos 
-10 - Comprobar los valores de limite
+10 - 
 
 */
 
@@ -95,7 +78,7 @@ void test_todos_los_leds_inician_apagados(void)
 {
     leds_virtuales = 0xFF;
     leds_init(&leds_virtuales);
-    TEST_ASSERT_EQUAL_UINT16(0x00, leds_virtuales);
+    TEST_ASSERT_EQUAL_UINT16(ALL_LEDS_OFF, leds_virtuales);
 }
 
 /**
@@ -125,7 +108,7 @@ void test_apagar_un_led(void)
 {
     leds_turn_on(LED05);
     leds_turn_off(LED05);
-    TEST_ASSERT_EQUAL_UINT16(0x00, leds_virtuales);
+    TEST_ASSERT_EQUAL_UINT16(ALL_LEDS_OFF, leds_virtuales);
 }
 
 /**
@@ -166,7 +149,7 @@ void test_leer_estado_de_leds(void)
 void test_prender_todos_los_leds(void)
 {
     leds_turn_on_all();
-    TEST_ASSERT_EQUAL_UINT16(0xFF, leds_virtuales);
+    TEST_ASSERT_EQUAL_UINT16(ALL_LEDS_ON, leds_virtuales);
 }
 
 /**
@@ -182,7 +165,7 @@ void test_apagar_todos_los_leds(void)
     leds_turn_on_all();
     // Apaga todos los leds
     leds_turn_off_all();
-    TEST_ASSERT_EQUAL_UINT16(0x00, leds_virtuales);
+    TEST_ASSERT_EQUAL_UINT16(ALL_LEDS_OFF, leds_virtuales);
 }
 
 /**
@@ -199,4 +182,22 @@ void test_comprobar_limites(void)
     leds_turn_on(LED01);
     TEST_ASSERT_BIT_HIGH((LED01 - 1), leds_virtuales);
 }
+
+/**
+ * @brief Test 9
+ *        Comprobar valores prohibidos (numero de led > 16 o numero de led < 1) para la funcion: leds_turn_on()
+ *          
+ * @param  -
+ * @return -
+ */
+void test_comprobar_prohibidos_turn_on(void)
+{
+    // verifica 2 valore por encima de 16 y 2 valores por debajo de 1
+    leds_turn_on(LED16 + 1);
+    leds_turn_on(LED16 + 17);
+    leds_turn_on(LED01 - 1);
+    leds_turn_on(LED01 - 17);
+    TEST_ASSERT_EQUAL_UINT16(ALL_LEDS_OFF, leds_virtuales);
+}
+
 /* === End of documentation ==================================================================== */
