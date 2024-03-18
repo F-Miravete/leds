@@ -200,4 +200,23 @@ void test_comprobar_prohibidos_turn_on(void)
     TEST_ASSERT_EQUAL_UINT16(ALL_LEDS_OFF, leds_virtuales);
 }
 
+/**
+ * @brief Test 10
+ *        Comprobar valores prohibidos (numero de led > 16 o numero de led < 1) para la funcion: leds_turn_off()
+ *          
+ * @param  -
+ * @return -
+ */
+void test_comprobar_prohibidos_turn_off(void)
+{
+    // verifica 2 valore por encima de 16 y 2 valores por debajo de 1
+    leds_turn_on_all();
+    leds_turn_off(LED16 + 1);
+    leds_turn_off(LED16 + 17);
+    leds_turn_off(LED01 - 1);
+    leds_turn_off(LED01 - 17);
+    // leds_turn_off(LED02);
+    TEST_ASSERT_EQUAL_UINT16(ALL_LEDS_ON, leds_virtuales);
+}
+
 /* === End of documentation ==================================================================== */
